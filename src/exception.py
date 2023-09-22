@@ -1,7 +1,6 @@
 import sys
 # error detail is tracked by sys
-import logger
-import logging  # to log exceptions
+from src.logger import logging   # to log exceptions
 def error_message_detail(error,error_detail:sys):
     # exception info() returns 3 things
     _,_,exc_tb=error_detail.exc_info()
