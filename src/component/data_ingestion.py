@@ -7,6 +7,8 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from dataclasses import dataclass  # to make class variables     -- is in python 3.9 & above
 
+from src.component.data_transformation import DataTransformation
+from src.component.data_transformation import DataTransformationConfig
 @dataclass    # using dataclass as decorator with  DataIngestionConfig
 class DataIngestionConfig:   # to maintain inputs of modules we will call here
     # inputs like in which file I have to save the output
@@ -44,5 +46,10 @@ class DataIngestion:
         
 if __name__=="__main__":    # to execute it when we run it
     obj=DataIngestion()
-    obj.initiate_data_ingestion()
+    train_path,test_path=obj.initiate_data_ingestion()
+
+    data_transformation=DataTransformation()
+    data_transformation.initiate_data_transformation(train_path,test_path)
+
+
 
