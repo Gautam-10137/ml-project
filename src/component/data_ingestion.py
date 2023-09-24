@@ -9,6 +9,10 @@ from dataclasses import dataclass  # to make class variables     -- is in python
 
 from src.component.data_transformation import DataTransformation
 from src.component.data_transformation import DataTransformationConfig
+
+from src.component.model_trainer import ModelTrainerConfig
+from src.component.model_trainer import ModelTrainer
+
 @dataclass    # using dataclass as decorator with  DataIngestionConfig
 class DataIngestionConfig:   # to maintain inputs of modules we will call here
     # inputs like in which file I have to save the output
@@ -49,7 +53,10 @@ if __name__=="__main__":    # to execute it when we run it
     train_path,test_path=obj.initiate_data_ingestion()
 
     data_transformation=DataTransformation()
-    data_transformation.initiate_data_transformation(train_path,test_path)
+    train_arr,test_arr,_=data_transformation.initiate_data_transformation(train_path,test_path)
+
+    model_trainer=ModelTrainer()
+    print(model_trainer.initiate_model_trainer(train_arr,test_arr))
 
 
 
